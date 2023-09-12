@@ -21,6 +21,6 @@ const server = new ApolloServer({
 })
 
 
-server.listen(4000).then((url) => {
-  console.log('Servidor rodando em ${url}')
+server.listen(4000).then(({url}) => {
+  console.log(`Servidor rodando em ${url}`)
 })
