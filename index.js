@@ -15,6 +15,8 @@ const typeDefs = gql`
 `
 
 const resolvers = {
+
+  /* Added a mail funcion to send a valid response to resolver */
   User: {
     mail(obj) {
       return 'user@mail.com'
@@ -28,7 +30,7 @@ const resolvers = {
       return {
         name: 'John Doe',
         age: 26,
-        other: 'test'
+        other: 'test' // adding a invalid atrr to resolve it with another method in User resolver
       }
     }
   }
