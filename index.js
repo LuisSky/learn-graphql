@@ -1,30 +1,37 @@
 const { ApolloServer, gql } = require('apollo-server')
 
 const typeDefs = gql`
+  
   type User {
     id: Int
+    userType: String
     name: String
     email: String
   }
   
   type Query {
-    returnUser(id: Int): User
+    returnUserById(id: Int): User
+    returnAllUsers: [User]
   }
 `
 
 const users = [
-  {id: 1, name: 'John Doe', email: 'john@mail.com'},
-  {id: 2, name: 'Alex Cole', email: 'alex@mail.com'},
-  {id: 3, name: 'Ada Lovelace', email: 'adalov@mail.com'}
+  { id: 1, userType: 'Adm', name: 'John Doe', email: 'john@mail.com' },
+  { id: 2, userType: 'User', name: 'Alex Cole', email: 'alex@mail.com' },
+  { id: 3, userType: 'Adm', name: 'Ada Lovelace', email: 'adalov@mail.com' },
+  { id: 4, userType: 'User', name: 'Mark Gates', email: 'mark@mail.com' }
 ]
+
 const resolvers = {
 
   Query: {
-    returnUser(_, args) {
-      const { id, name, email } = args
-      
-      const findUser = users.filter(user => user.id === id)
-      return findUser ? findUser[0] : null
+    returnAllUsers() {
+      return users
+    },
+    returnUserById(_, args) {
+      const { id } = args
+      const user = users.filter(user => user.id === id)
+      return user ? user[0] : null
     }
   }
 }
