@@ -1,10 +1,14 @@
 const { ApolloServer, gql } = require('apollo-server')
 
 const typeDefs = gql`
+  type UserType {
+    id: Int
+    name: String
+  }
   
   type User {
     id: Int
-    userType: String
+    userType: UserType
     name: String
     email: String
   }
@@ -15,19 +19,35 @@ const typeDefs = gql`
   }
 `
 
+const TYPE_USER = 1
+const TYPE_ADMIN = 2
+
+const userTypes = [
+  { id: TYPE_USER, name: 'Usuario' },
+  { id: TYPE_ADMIN, name: 'Admin' }
+]
+
+
 const users = [
-  { id: 1, userType: 'Adm', name: 'John Doe', email: 'john@mail.com' },
-  { id: 2, userType: 'User', name: 'Alex Cole', email: 'alex@mail.com' },
-  { id: 3, userType: 'Adm', name: 'Ada Lovelace', email: 'adalov@mail.com' },
-  { id: 4, userType: 'User', name: 'Mark Gates', email: 'mark@mail.com' }
+  { id: 1, userType: TYPE_USER, name: 'John Doe', email: 'john@mail.com' },
+  { id: 2, userType: TYPE_ADMIN, name: 'Alex Cole', email: 'alex@mail.com' },
+  { id: 3, userType: TYPE_USER, name: 'Ada Lovelace', email: 'adalov@mail.com' },
+  { id: 4, userType: TYPE_ADMIN, name: 'Mark Gates', email: 'mark@mail.com' }
 ]
 
 const resolvers = {
-
+  User: {
+    userType(user) {
+      const { userType } = user
+      const type = userTypes.filter(t => t.id === userType)
+      return type ? type[0] : null
+    }
+  },
   Query: {
     returnAllUsers() {
       return users
     },
+    
     returnUserById(_, args) {
       const { id } = args
       const user = users.filter(user => user.id === id)
