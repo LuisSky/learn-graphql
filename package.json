@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.12.1",
-    "graphql": "^16.8.0"
+    "graphql": "^16.8.0",
+    "graphql-import": "^0.7.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
