@@ -1,0 +1,16 @@
+type UserType {
+  id: Int
+  name: String
+}
+
+type User {
+  id: Int
+  userType: UserType
+  name: String
+  email: String
+}
+
+type Query {
+  returnUserById(id: Int): User
+  returnAllUsers: [User]
+}

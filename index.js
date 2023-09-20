@@ -1,23 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server')
-
-const typeDefs = gql`
-  type UserType {
-    id: Int
-    name: String
-  }
-  
-  type User {
-    id: Int
-    userType: UserType
-    name: String
-    email: String
-  }
-  
-  type Query {
-    returnUserById(id: Int): User
-    returnAllUsers: [User]
-  }
-`
+const { importSchema } = require('graphql-import')
 
 const TYPE_USER = 1
 const TYPE_ADMIN = 2
@@ -58,7 +40,7 @@ const resolvers = {
 
 
 const server = new ApolloServer({
-  typeDefs,
+  typeDefs: importSchema('./schemas/index.graphql'),
   resolvers
 })
 
