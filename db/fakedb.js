@@ -8,10 +8,10 @@ const userTypes = [
 
 
 const users = [
-  { id: 1, userType: TYPE_USER, name: 'John Doe', email: 'john@mail.com' },
-  { id: 2, userType: TYPE_ADMIN, name: 'Alex Cole', email: 'alex@mail.com' },
-  { id: 3, userType: TYPE_USER, name: 'Ada Lovelace', email: 'adalov@mail.com' },
-  { id: 4, userType: TYPE_ADMIN, name: 'Mark Gates', email: 'mark@mail.com' }
+  { id: 1, userType: TYPE_USER, name: 'John Doe', email: 'john@mail.com', status: 'BLOCKED' },
+  { id: 2, userType: TYPE_ADMIN, name: 'Alex Cole', email: 'alex@mail.com', status: 'ACTIVE' },
+  { id: 3, userType: TYPE_USER, name: 'Ada Lovelace', email: 'adalov@mail.com', status: 'BLOCKED' },
+  { id: 4, userType: TYPE_ADMIN, name: 'Mark Gates', email: 'mark@mail.com', status: 'ACTIVE' }
 ]
 
 module.exports = { users, userTypes }

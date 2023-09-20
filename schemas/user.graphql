@@ -3,9 +3,15 @@ type UserType {
   name: String
 }
 
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+}
+
 type User {
   id: Int
   userType: UserType
   name: String
   email: String
+  status: UserStatus
 }
