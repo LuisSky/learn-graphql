@@ -1,14 +1,4 @@
-type UserType {
-  id: Int
-  name: String
-}
-
-type User {
-  id: Int
-  userType: UserType
-  name: String
-  email: String
-}
+#import User from 'user.graphql'
 
 type Query {
   returnUserById(id: Int): User
